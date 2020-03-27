@@ -29,6 +29,11 @@ const cat_post = async (req, res) => {
   res.send(`added cat: ${cat.insertId}`);
 };
 
+const cat_put = async (req, res) => {
+  console.log('cat_put', req.body);
+  res.send('updated cat...');
+};
+
 module.exports = {
   cat_list_get,
   cat_get,

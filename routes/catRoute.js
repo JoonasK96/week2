@@ -20,9 +20,8 @@ router.post('/', upload.single('cat'), (req, res) => {
  // res.send('With this endpoint you can add cats');
 });
 
-router.put('/', (req, res) => {
-  res.send('With this endpoint you can edit cats');
-});
+router.put('/', catController.cat_put);
+
 
 router.delete('/', (req, res) => {
   res.send('With this endpoint you can delete cats');
