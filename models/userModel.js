@@ -14,7 +14,12 @@ const users = [
   },
 ];
 
+ const getUsersList = () => {
+//SELECT user_id, name, email FROM wop_user
+ };
+
 const getUser = (id) => {
+  //SELECT * FROM wop_user WHERE user_id = 1
   const user = users.filter((usr) => {
     if (usr.id === id) {
       return usr;

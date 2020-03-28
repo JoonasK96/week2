@@ -1,11 +1,11 @@
 'use strict';
+const cors = require('cors');
 require('dotenv').config();
 const express = require('express');
 const app = express();
 const port = 3000;
 const catRoute = require('./routes/catRoute');
 const userRoute = require('./routes/userRoute');
-const cors = require('cors');
 
 app.use(cors());
 app.use(express.json()) // for parsing application/json
