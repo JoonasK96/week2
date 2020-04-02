@@ -16,8 +16,21 @@ const user_get = (req, res) => {
 
 const user_post = (req, res) => {
   console.log('data from form', req.body);
-  res.send('With this endpoint you can add users');
+  try {
+    const user = await userModel.insertUser(req.body);
+    console.log('inserted', user);
+    res.send(`added user: ${user.insertId}`);
+  } catch (e) {
+    console.error('problem with user_post in userController', e);
+    res.status(500).send(`database insert error: ${e.message}`);
+  }
 };
+
+const user_put = async (req, res) => {
+  console.log('user_put', req.body);
+  const upUser = await userModel.updateUser(req.body);
+  //
+}
 
 module.exports = {
   user_list_get,
