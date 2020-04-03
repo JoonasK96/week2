@@ -16,6 +16,17 @@ const cat_get = async (req, res) => {
 
 const cat_post = async (req, res) => {
   console.log('cat_post', req.body, req.file);
+
+  let errors = validationResult(req);
+
+  if(!req.file.mimetype.includes('image')) {
+    errors = [{msg: 'ei ole kuva!'}];
+  }
+
+  if (!errors.isEmpty()) {
+    return res.status(422).json({errors: errors.array()});
+  }
+
   const inCat = {
       name: req.body.name,
       age: req.body.age,

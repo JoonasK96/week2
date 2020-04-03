@@ -10,13 +10,25 @@ router.get('/', catController.cat_list_get);
 
 router.get('/:id', catController.cat_get);
 
-router.post('/', upload.single('cat'), (req, res) => {
+router.post('/', [
+  body('name', 'required').isLength(),
+  body('age', 'number, required').isNumeric(str[0-99]),
+  body('weight', 'number, required').isNumeric(str[0-99]),
+  body('select owner', 'required').isNumeric(str[0-99]),
+  body('file', 'required, accept only images (jpg, gif, png)').
+
+  upload.single('cat'), (req, res) => {
   console.log('tiedosto: ', req.file);
   catController.cat_post;
- // res.send('With this endpoint you can add cats');
 });
 
-router.put('/', catController.cat_put);
+router.put('/', [ 
+body('name', 'required').isLength(),
+body('age', 'number, required').isNumeric(str[0-99]),
+body('weight', 'number, required').isNumeric(str[0-99]),
+body('select owner', 'required').isNumeric(str[0-99]),
+body('file', 'required, accept only images (jpg, gif, png)').
+], catController.cat_put);
 router.delete('/:id', catController.cat_delete);
 
 module.exports = router;

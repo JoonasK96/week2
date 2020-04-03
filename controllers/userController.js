@@ -1,5 +1,6 @@
 'use strict';
 const userModel = require('../models/userModel');
+const {validationResult} = require('express-validator');
 
 const users = userModel.users;
 
@@ -16,6 +17,10 @@ const user_get = (req, res) => {
 
 const user_post = (req, res) => {
   console.log('data from form', req.body);
+const errors = validationResult(req);
+if (!errors.isEmpty()) {
+  return res.status(422).json({errors: errors.array()});
+}
   try {
     const user = await userModel.insertUser(req.body);
     console.log('inserted', user);
